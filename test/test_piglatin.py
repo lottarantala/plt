@@ -32,3 +32,7 @@ class TestPigLatin(unittest.TestCase):
     def test_translate_starts_with_many_consonants(self):
         translator = PigLatin("known")
         self.assertEqual("ownknay", translator.translate())
+
+    def test_translate_many_words(self):
+        translator = PigLatin("hello world")
+        self.assertEqual("ellohay orldway", translator.translate())
