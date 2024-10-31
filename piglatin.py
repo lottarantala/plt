@@ -32,6 +32,8 @@ class PigLatin:
                 translated_word = translated_word.upper()
             elif original_word[0].isupper():
                 translated_word = translated_word.capitalize()
+            elif any(ch.isupper() for ch in original_word[1:]):
+                raise PigLatinError("Not valid uppercase")
             translated_words.append(start_punctuation + translated_word + end_punctuation)
         
         return ' '.join(translated_words)
