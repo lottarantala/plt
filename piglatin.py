@@ -16,7 +16,10 @@ class PigLatin:
         
         for word in words:
             if word[0] in 'aeiou':
-                translated_word = word + 'nay'
+                if word[-1] == 'y':
+                    translated_word = word + 'nay'
+                else:
+                    translated_word = word + 'ay'
             else:
                 first_vowel_idx = len(word)
                 for i, char in enumerate(word):
