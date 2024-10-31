@@ -14,10 +14,10 @@ class PigLatin:
 
         words = self.phrase.split()
         translated_words = []
-        vowels = 'aeiou'
-
+        vowels = 'aeiouAEIOU'
 
         for word in words:
+            original_word = word
             word, start_punctuation, end_punctuation = self.check_punctuation(word)
             
             if '-' in word:
@@ -26,7 +26,9 @@ class PigLatin:
                 translated_word = '-'.join(translated_subwords)
             else:
                 translated_word = self.translate_subword(word, vowels)
-            
+
+            if original_word[0].isupper():
+                translated_word = translated_word.capitalize()
             translated_words.append(start_punctuation + translated_word + end_punctuation)
         
         return ' '.join(translated_words)

@@ -60,3 +60,7 @@ class TestPigLatin(unittest.TestCase):
     def test_translate_parenthesis(self):
         translator = PigLatin("hello (world)")
         self.assertEqual("ellohay (orldway)", translator.translate())
+
+    def test_translate_starts_with_uppercase(self):
+        translator = PigLatin("Hello")
+        self.assertEqual("Ellohay", translator.translate())
