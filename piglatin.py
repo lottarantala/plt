@@ -1,7 +1,7 @@
+
 from error import PigLatinError
 
 class PigLatin:
-
     def __init__(self, phrase: str):
         self.phrase = phrase
 
@@ -18,6 +18,7 @@ class PigLatin:
 
         for word in words:
             original_word = word
+            word = word.lower()
             word, start_punctuation, end_punctuation = self.check_punctuation(word)
             
             if '-' in word:
@@ -27,7 +28,9 @@ class PigLatin:
             else:
                 translated_word = self.translate_subword(word, vowels)
 
-            if original_word[0].isupper():
+            if original_word.isupper():
+                translated_word = translated_word.upper()
+            elif original_word[0].isupper():
                 translated_word = translated_word.capitalize()
             translated_words.append(start_punctuation + translated_word + end_punctuation)
         
@@ -65,3 +68,4 @@ class PigLatin:
             word = word[1:]
 
         return word, start_punctuation, end_punctuation
+
