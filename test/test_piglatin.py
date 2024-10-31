@@ -56,3 +56,7 @@ class TestPigLatin(unittest.TestCase):
     def test_translate_apostrophe(self):
         translator = PigLatin("don't")
         self.assertEqual("on'tday", translator.translate())
+
+    def test_translate_parenthesis(self):
+        translator = PigLatin("hello (world)")
+        self.assertEqual("ellohay (orldway)", translator.translate())

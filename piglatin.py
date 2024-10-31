@@ -19,12 +19,20 @@ class PigLatin:
 
         for word in words:
             if not word[-1].isalpha():
-                punctuation = word[-1]
-                if punctuation not in valid_punctuation_marks:
+                end_punctuation = word[-1]
+                if end_punctuation not in valid_punctuation_marks:
                     raise PigLatinError("Invalid punctuation mark")
                 word = word[:-1]
             else:
-                punctuation = ''
+                end_punctuation = ''
+
+            if not word[0].isalpha():
+                start_punctuation = word[0]
+                if start_punctuation not in valid_punctuation_marks:
+                    raise PigLatinError("Invalid punctuation mark")
+                word = word[1:]
+            else:
+                start_punctuation = ''
             
             if '-' in word:
                 subwords = word.split('-')
@@ -33,7 +41,7 @@ class PigLatin:
             else:
                 translated_word = self.translate_subword(word, vowels)
             
-            translated_words.append(translated_word + punctuation)
+            translated_words.append(start_punctuation + translated_word + end_punctuation)
         
         return ' '.join(translated_words)
 
