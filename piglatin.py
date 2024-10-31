@@ -11,12 +11,12 @@ class PigLatin:
     def translate(self) -> str:
         if self.phrase == "":
             return "nil"
-        
+
         words = self.phrase.split()
         translated_words = []
         vowels = 'aeiou'
         valid_punctuation_marks = ".,!?;:'()"
-        
+
         for word in words:
             if not word[-1].isalpha():
                 punctuation = word[-1]
@@ -50,4 +50,3 @@ class PigLatin:
                     first_vowel_idx = i
                     break
             return word[first_vowel_idx:] + word[:first_vowel_idx] + 'ay'
-
