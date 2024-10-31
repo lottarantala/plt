@@ -15,12 +15,12 @@ class PigLatin:
         words = self.phrase.split()
         translated_words = []
         vowels = 'aeiou'
+        valid_punctuation_marks = ".,!?;:'()"
         
         for word in words:
-            # Handle punctuation
             if not word[-1].isalpha():
                 punctuation = word[-1]
-                if punctuation not in ".,!?;:":
+                if punctuation not in valid_punctuation_marks:
                     raise PigLatinError("Invalid punctuation mark")
                 word = word[:-1]
             else:
