@@ -13,9 +13,10 @@ class PigLatin:
         
         words = self.phrase.split()
         translated_words = []
+        vowels = 'aeiou'
         
         for word in words:
-            if word[0] in 'aeiou':
+            if word[0] in vowels:
                 if word[-1] == 'y':
                     translated_word = word + 'nay'
                 else:
@@ -23,11 +24,10 @@ class PigLatin:
             else:
                 first_vowel_idx = len(word)
                 for i, char in enumerate(word):
-                    if char in 'aeiou':
+                    if char in vowels:
                         first_vowel_idx = i
                         break
                 translated_word = word[first_vowel_idx:] + word[:first_vowel_idx] + 'ay'
             translated_words.append(translated_word)
         
         return ' '.join(translated_words)
-
