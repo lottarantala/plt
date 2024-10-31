@@ -15,24 +15,10 @@ class PigLatin:
         words = self.phrase.split()
         translated_words = []
         vowels = 'aeiou'
-        valid_punctuation_marks = ".,!?;:'()"
+
 
         for word in words:
-            if not word[-1].isalpha():
-                end_punctuation = word[-1]
-                if end_punctuation not in valid_punctuation_marks:
-                    raise PigLatinError("Invalid punctuation mark")
-                word = word[:-1]
-            else:
-                end_punctuation = ''
-
-            if not word[0].isalpha():
-                start_punctuation = word[0]
-                if start_punctuation not in valid_punctuation_marks:
-                    raise PigLatinError("Invalid punctuation mark")
-                word = word[1:]
-            else:
-                start_punctuation = ''
+            word, start_punctuation, end_punctuation = self.check_punctuation(word)
             
             if '-' in word:
                 subwords = word.split('-')
@@ -58,3 +44,22 @@ class PigLatin:
                     first_vowel_idx = i
                     break
             return word[first_vowel_idx:] + word[:first_vowel_idx] + 'ay'
+
+    def check_punctuation(self, word):
+        valid_punctuation_marks = ".,!?;:'()"
+        start_punctuation = ''
+        end_punctuation = ''
+
+        if not word[-1].isalpha():
+            end_punctuation = word[-1]
+            if end_punctuation not in valid_punctuation_marks:
+                raise PigLatinError("Invalid punctuation mark")
+            word = word[:-1]
+
+        if not word[0].isalpha():
+            start_punctuation = word[0]
+            if start_punctuation not in valid_punctuation_marks:
+                raise PigLatinError("Invalid punctuation mark")
+            word = word[1:]
+
+        return word, start_punctuation, end_punctuation
