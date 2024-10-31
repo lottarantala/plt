@@ -48,3 +48,7 @@ class TestPigLatin(unittest.TestCase):
     def test_translate_non_valid_punctuation_mark(self):
         translator = PigLatin("hello world}")
         self.assertRaises(PigLatinError, translator.translate)
+
+    def test_translate_punctuation_in_middle_of_word(self):
+        translator = PigLatin("hello, world!")
+        self.assertEqual("ellohay, orldway!", translator.translate())
