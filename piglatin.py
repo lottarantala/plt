@@ -16,13 +16,21 @@ class PigLatin:
         vowels = 'aeiou'
         
         for word in words:
+            # Handle punctuation
+            if not word[-1].isalpha():
+                punctuation = word[-1]
+                word = word[:-1]
+            else:
+                punctuation = ''
+            
             if '-' in word:
                 subwords = word.split('-')
                 translated_subwords = [self.translate_subword(subword, vowels) for subword in subwords]
                 translated_word = '-'.join(translated_subwords)
             else:
                 translated_word = self.translate_subword(word, vowels)
-            translated_words.append(translated_word)
+            
+            translated_words.append(translated_word + punctuation)
         
         return ' '.join(translated_words)
 
